@@ -34,7 +34,6 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/css/material-dasboard.min.css",
               "src/styles.scss"
             ],
             "scripts": [
