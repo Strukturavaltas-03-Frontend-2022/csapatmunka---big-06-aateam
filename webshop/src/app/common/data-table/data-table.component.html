@@ -3,8 +3,8 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th *ngFor="let col of columns" (click)="onColumnSelect(col.key)" class="column__header text-light">
-            <div class=" d-flex justify-content-between">
+          <th *ngFor="let col of columns" (click)="onColumnSelect(col.key)" class="column__header">
+            <div class="d-flex justify-content-between">
               {{ col.title }}
               <i *ngIf="sortColumn==col.key" [ngClass]="sortIcon" class="sort__direction__icon mt-2"></i>
             </div>

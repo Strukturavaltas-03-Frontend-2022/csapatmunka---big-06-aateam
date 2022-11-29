@@ -17,7 +17,7 @@ import { CustomersComponent } from './page/customers/customers.component';
 import { BillsComponent } from './page/bills/bills.component';
 import { ProfileComponent } from './page/profile/profile.component';
 import { DataTableComponent } from './common/data-table/data-table.component';
-import { SorterPipe } from './common/data-table/sorter.pipe';
+import { SorterPipe } from './common/data-table/pipe/sorter.pipe';
 import { FilterPipe } from './common/data-table/pipe/filter.pipe';
 
 @NgModule({
