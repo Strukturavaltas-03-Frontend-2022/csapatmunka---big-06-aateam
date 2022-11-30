@@ -1,0 +1,13 @@
+.column__header:hover {
+  cursor: pointer;
+}
+
+.sort__direction__icon {
+  color: rgb(58, 1, 1);
+}
+
+th, td{
+  min-width: 5vw;
+  max-width: 20vw;
+  overflow: hidden;
+}

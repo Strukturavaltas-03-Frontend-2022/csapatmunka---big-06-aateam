@@ -1,22 +1,48 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { HomeComponent } from './page/home/home.component';
 import { HeaderComponent } from './common/header/header.component';
+import { SingInComponent } from './page/sing-in/sing-in.component';
+import { SingUpComponent } from './page/sing-up/sing-up.component';
+import { ProductsComponent } from './page/products/products.component';
+import { OrdersComponent } from './page/orders/orders.component';
+import { CustomersComponent } from './page/customers/customers.component';
+import { BillsComponent } from './page/bills/bills.component';
+import { ProfileComponent } from './page/profile/profile.component';
+import { DataTableComponent } from './common/data-table/data-table.component';
+import { SorterPipe } from './common/data-table/pipe/sorter.pipe';
+import { FilterPipe } from './common/data-table/pipe/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    SingInComponent,
+    SingUpComponent,
+    ProductsComponent,
+    OrdersComponent,
+    CustomersComponent,
+    BillsComponent,
+    ProfileComponent,
+    DataTableComponent,
+    SorterPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,12 @@
+<p>teszt</p>
+
+
+<div class="row">
+  <div *ngIf="productList$ | async as productList" class="">
+    <app-data-table
+      [list]="productList"
+      [columns]="columns"
+      (onSelect)="onProductSelect($event)"
+    ></app-data-table>
+  </div>
+</div>
