@@ -1,12 +1,113 @@
 <p>teszt</p>
 
+<!-- buta, azaz közös táblázattal -->
 
 <div class="row">
   <div *ngIf="productList$ | async as productList" class="">
-    <app-data-table
-      [list]="productList"
-      [columns]="columns"
-      (onSelect)="onProductSelect($event)"
-    ></app-data-table>
+    <!-- <div *ngFor="let product of productList">
+      {{product['category'].name}}
+    </div> -->
+    <app-data-table [list]="productList" [columns]="columns" (onSelect)="onProductSelect($event)"></app-data-table>
   </div>
+</div>
+
+<!-- egyedi táblázattal -->
+
+<div *ngIf="productList$ | async as productList" class="row">
+  <div class="col-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th *ngFor="let col of columns" (click)="onColumnSelect(col.key)" class="column__header">
+            <div class="d-flex justify-content-between">
+              {{ col.title }}
+              <i *ngIf="sortColumn==col.key" [ngClass]="sortIcon" class="sort__direction__icon mt-2"></i>
+            </div>
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let product of productList | sorter:sortColumn:sortDirect | paginate: { itemsPerPage: 10, currentPage: page }">
+          <td>
+            {{ product.id }}
+          </td>
+          <td>
+            {{ product.name }}
+          </td>
+          <td>
+            {{ product.type }}
+          </td>
+          <td>
+            {{ product.category.name }}
+          </td>
+          <td>
+            {{ product.description }}
+          </td>
+          <td>
+            {{ product.price }}
+          </td>
+          <td>
+            {{ product.featured }}
+          </td>
+          <td>
+            {{ product.active }}
+          </td>
+          <td>
+            <div class="btn-group">
+              <button (click)="onProductSelect(product)" class="btn btn-info">
+                <i class="fa fa-edit"></i>
+              </button>
+              <button (click)="onProductDelete(product)" class="btn btn-danger">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <!-- összeg sor -->
+        <tr class="table__table--sum">
+          <td>
+            {{ productList.length }}
+          </td>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+          <td>
+            {{ productList | tableColumnSum:'price' }}
+          </td>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="d-flex justify-content-center col-12 mt-4 mx-auto">
+  <style>
+    .my-pagination /deep/ .ngx-pagination .current {
+      background: rgb(39, 111, 255);
+    }
+  </style>
+  <pagination-controls class=" my-pagination" (pageChange)="page = $event" previousLabel="Previous" nextLabel="Next">
+  </pagination-controls>
 </div>

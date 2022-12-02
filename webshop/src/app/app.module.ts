@@ -19,6 +19,8 @@ import { ProfileComponent } from './page/profile/profile.component';
 import { DataTableComponent } from './common/data-table/data-table.component';
 import { SorterPipe } from './common/data-table/pipe/sorter.pipe';
 import { FilterPipe } from './common/data-table/pipe/filter.pipe';
+import { EditProductComponent } from './page/edit-product/edit-product.component';
+import { TableColumnSumPipe } from './pipe/table-column-sum.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { FilterPipe } from './common/data-table/pipe/filter.pipe';
     ProfileComponent,
     DataTableComponent,
     SorterPipe,
-    FilterPipe
+    FilterPipe,
+    EditProductComponent,
+    TableColumnSumPipe
   ],
   imports: [
     BrowserModule,
