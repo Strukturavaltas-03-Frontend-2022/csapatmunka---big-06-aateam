@@ -33,14 +33,26 @@
 
       <div class="row mb-5">
         <label for="category" class="col-sm-2 col-form-label">
-          <b>Category</b>
+          <b>Category ID</b>
         </label>
         <div class="col-sm-10">
-          <input name="category" [(ngModel)]="product.catID" type="text" class="form-control"
-            pattern="^[A-Ű][A-Űa-Ű .]{4,24}$" required />
+          <input name="category" [(ngModel)]="product.catID" type="number" class="form-control" required />
           <div *ngIf="productEditorForm.controls['category']?.invalid" class="error-message">
             Category is required!
           </div>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <label for="category" class="col-sm-2 col-form-label">
+          <b>Category name</b>
+        </label>
+        <div class="col-sm-10">
+          <select class="form-select" id="category" required [(ngModel)]="product.catID" name="category">
+            <option *ngFor="let category of categoryList$ | async" [value]="category.id">
+              {{category.name}}
+            </option>
+          </select>
         </div>
       </div>
 

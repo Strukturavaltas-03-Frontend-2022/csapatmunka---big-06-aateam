@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Category } from 'src/app/model/category';
 import { Product } from 'src/app/model/product';
 import { CategoryService } from 'src/app/service/category.service';
@@ -13,7 +13,7 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class EditProductComponent {
   product$: Observable<Product | null> = this.productService.selected$;
-  category$: Observable<Category | null> = this.categoryService.selected$;
+  categoryList$: Observable<Category[]> = this.categoryService.list$;
 
   constructor(
     private productService: ProductService,
@@ -35,7 +35,7 @@ export class EditProductComponent {
         this.product$ = of(new Product)
       }
     });
-
+    this.categoryService.getAll();
   }
 
   onUpdate(product: Product): void {
