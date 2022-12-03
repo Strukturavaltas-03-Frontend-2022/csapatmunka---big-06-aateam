@@ -2,16 +2,38 @@
 
 <!-- buta, azaz közös táblázattal -->
 
-<div class="row">
+<!-- <div class="row">
   <div *ngIf="productList$ | async as productList" class="">
-    <!-- <div *ngFor="let product of productList">
+    <div *ngFor="let product of productList">
       {{product['category'].name}}
-    </div> -->
+    </div>
     <app-data-table [list]="productList" [columns]="columns" (onSelect)="onProductSelect($event)"></app-data-table>
   </div>
-</div>
+</div> -->
 
 <!-- egyedi táblázattal -->
+
+<div class="row">
+  <div class="col-12 col-md-10 offset-md-1 my-0">
+    <!-- <input [(ngModel)]="phrase" class="form-control" type="text"> -->
+    <div class="input-group mb-3 d-flex justify-content-center">
+      <p class="col-12 col-md-2 mt-3 text-center">
+        <b>Szűrés</b>
+      </p>
+      <div class="col-12 col-md-4 me-md-1">
+        <select [(ngModel)]="filterKey" class="form-select mt-2">
+          <option value="">szűrés minden mezőben</option>
+          <option *ngFor="let col of columns" [value]="col.key">
+            {{ col.title }}
+          </option>
+        </select>
+      </div>
+      <div class="col-12 col-md-4 ms-md-1">
+        <input [(ngModel)]="phrase" class="form-control ml-3 mt-2" type="text" placeholder="szűrő kifejezés">
+      </div>
+    </div>
+  </div>
+</div>
 
 <div *ngIf="productList$ | async as productList" class="row">
   <div class="col-12">
@@ -29,7 +51,7 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let product of productList | sorter:sortColumn:sortDirect | paginate: { itemsPerPage: 10, currentPage: page }">
+          *ngFor="let product of productList | filter:phrase:filterKey | sorter:sortColumn:sortDirect | paginate: { itemsPerPage: 10, currentPage: page }">
           <td>
             {{ product.id }}
           </td>

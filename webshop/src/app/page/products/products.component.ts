@@ -35,6 +35,10 @@ export class ProductsComponent implements OnInit {
 
   page: number = 1;
 
+  phrase: string = '';
+
+  filterKey: string = '';
+
   currentHeader: string = 'id';
   sortColumn: string = 'id';
   sortDirect: string = 'increasing';
