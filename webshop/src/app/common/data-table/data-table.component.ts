@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Category } from 'src/app/model/category';
 
 export interface ITableCol {
   [x: string]: any;
@@ -11,7 +12,7 @@ export interface ITableCol {
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.scss']
 })
-export class DataTableComponent<T extends {[x: string]: any}> implements OnInit {
+export class DataTableComponent<T extends { [x: string]: any }> implements OnInit {
 
   @Input() list: T[] = [];
 
