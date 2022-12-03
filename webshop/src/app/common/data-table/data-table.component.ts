@@ -5,6 +5,7 @@ export interface ITableCol {
   [x: string]: any;
   title: string;
   key: string;
+  mode: string;
 }
 
 @Component({
@@ -19,13 +20,18 @@ export class DataTableComponent<T extends { [x: string]: any }> implements OnIni
   @Input() columns: ITableCol[] = [];
 
   @Output() onSelect: EventEmitter<T> = new EventEmitter();
+  @Output() onDelete: EventEmitter<T> = new EventEmitter();
 
   page: number = 1;
+
+  phrase: string = '';
+
+  filterKey: string = '';
 
   currentHeader: string = 'id';
   sortColumn: string = 'id';
   sortDirect: string = 'increasing';
-  sortIcon: string = 'fa fa-long-arrow-down';
+  sortIcon: string = 'fa fa-long-arrow-up';
 
   constructor() { }
 
@@ -34,6 +40,10 @@ export class DataTableComponent<T extends { [x: string]: any }> implements OnIni
 
   raiseSelect(row: T): void {
     this.onSelect.emit(row);
+  }
+
+  raiseDelete(row: T): void {
+    this.onDelete.emit(row);
   }
 
 

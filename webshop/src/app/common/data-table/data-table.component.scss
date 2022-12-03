@@ -12,3 +12,12 @@ td {
   max-width: 20vw;
   overflow: hidden;
 }
+
+.table__table--sum {
+  background-color: rgb(17, 109, 112);
+  font-style: oblique;
+
+  td {
+    color: white;
+  }
+}

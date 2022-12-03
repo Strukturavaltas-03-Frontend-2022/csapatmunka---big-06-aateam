@@ -18,16 +18,18 @@ export class Customer {
   firstName: string = '';
   lastName: string = '';
   email: string = '';
-  address: Array<{
+  address: {
     zip: number,
     country: string,
     city: string,
     street: string,
-    notes: string}> = [{
+    notes: string
+  } = {
       zip: 0,
       country: '',
       city: '',
       street: '',
-      notes: ''}]
+      notes: ''
+    }
   active: boolean = true;
-  };
+};
