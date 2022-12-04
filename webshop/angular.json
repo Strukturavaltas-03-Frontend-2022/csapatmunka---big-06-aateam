@@ -38,7 +38,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/js/material-dashboard.min.js"
+              "src/assets/js/material-dashboard.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
             ]
           },
           "configurations": {
