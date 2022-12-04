@@ -1,21 +1,22 @@
-<p>teszt</p>
-
 <!-- buta, azaz közös táblázattal -->
 
-<!-- <div class="row">
+<div class="row">
   <div *ngIf="productList$ | async as productList" class="">
-    <div *ngFor="let product of productList">
-      {{product['category'].name}}
-    </div>
-    <app-data-table [list]="productList" [columns]="columns" (onSelect)="onProductSelect($event)"></app-data-table>
+
+    <app-data-table
+      [list]="productList"
+      [columns]="columns"
+      (onSelect)="onProductSelect($event)"
+      (onDelete)="onProductDelete($event)"
+    ></app-data-table>
   </div>
-</div> -->
+</div>
 
 <!-- egyedi táblázattal -->
 
+<!--
 <div class="row">
   <div class="col-12 col-md-10 offset-md-1 my-0">
-    <!-- <input [(ngModel)]="phrase" class="form-control" type="text"> -->
     <div class="input-group mb-3 d-flex justify-content-center">
       <p class="col-12 col-md-2 mt-3 text-center">
         <b>Szűrés</b>
@@ -34,7 +35,6 @@
     </div>
   </div>
 </div>
-
 <div *ngIf="productList$ | async as productList" class="row">
   <div class="col-12">
     <table class="table table-striped">
@@ -87,7 +87,7 @@
             </div>
           </td>
         </tr>
-        <!-- összeg sor -->
+
         <tr class="table__table--sum">
           <td>
             {{ productList.length }}
@@ -133,3 +133,4 @@
   <pagination-controls class=" my-pagination" (pageChange)="page = $event" previousLabel="Previous" nextLabel="Next">
   </pagination-controls>
 </div>
+ -->

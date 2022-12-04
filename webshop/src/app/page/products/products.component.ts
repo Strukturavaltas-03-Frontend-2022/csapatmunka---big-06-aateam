@@ -22,7 +22,7 @@ export class ProductsComponent implements OnInit {
     prod: this.productService.list$,
   }).pipe(map(result => result.prod.map(product => {
     // a pruducthoz fölveszünk egy új propertyt, a catID-nek megfelelő categoryt
-    product['category'] = result.cat.find(c => c.id === product.catID)
+    product['category'] = result.cat.find(c => c.id === product.catID)?.name
     // ezt még ki kell simítani, hogy ne legyen egymásba ágyazva, hogy egy keyvel
     // tudjunk rá hivatkozni a data-tableben
     return product
