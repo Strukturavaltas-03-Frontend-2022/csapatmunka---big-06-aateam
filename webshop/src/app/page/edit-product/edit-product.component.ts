@@ -5,6 +5,7 @@ import { Category } from 'src/app/model/category';
 import { Product } from 'src/app/model/product';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-product',
@@ -19,7 +20,8 @@ export class EditProductComponent {
     private productService: ProductService,
     private categoryService: CategoryService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -46,7 +48,30 @@ if (product.id === 0) {
 else {
   this.productService.update(product);
 }
-this.router.navigate(['/', 'product']);
 */
+this.router.navigate(['/', 'products']);
+
+//https://www.npmjs.com/package/ngx-toastr
+this.toastrService.success('Toastr default success test!');
+this.toastrService.error('Toastr', 'Error test!', {
+  timeOut: 3000,
+  positionClass: 'toast-center-center',
+  progressBar: true
+});
+this.toastrService.info('Toastr', 'Info test!', {
+  timeOut: 6000,
+  closeButton: true,
+  positionClass: 'toast-bottom-left',
+  progressBar: true
+});
+this.toastrService.warning('Toastr', 'Warning test!', {
+  easeTime: 2000,
+  easing: 'ease-in',
+  timeOut: 8000,
+  positionClass: 'toast-top-left',
+  progressBar: true
+});
   }
+
+
 }

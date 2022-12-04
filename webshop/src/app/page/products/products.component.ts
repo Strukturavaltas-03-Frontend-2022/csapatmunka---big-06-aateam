@@ -48,7 +48,7 @@ export class ProductsComponent implements OnInit {
     private productService: ProductService,
     private categoryService: CategoryService,
     private config: ConfigService,
-    private router: Router,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
