@@ -1,16 +1,7 @@
-<p>teszt</p>
-<!-- 
-<div class="row py-4 ">
-  <div class=""
-    *ngFor="let customer of customerList$ | async">
-    {{customer.firstName}}
-  </div>
-</div> -->
-
 <div class="row">
   <div *ngIf="customerList$ | async as customerList" class="">
     <app-data-table [list]="customerList" [columns]="columns" (onSelect)="onCustomerSelect($event)"
-      (onDelete)="onCustomerSelect($event)">
+      (onDelete)="onCustomerDelete($event)" (onNew)="onCustomerNew()">
     </app-data-table>
   </div>
 </div>
