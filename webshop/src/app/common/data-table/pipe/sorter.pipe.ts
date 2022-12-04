@@ -12,14 +12,24 @@ export class SorterPipe implements PipeTransform {
     }
 
     return value.sort(function (a: any, b: any) {
-      if (typeof a[column] === 'number' && typeof b[column] === 'number') {
+      // ha a column több részből áll, akkor szét kell szedni
+      const columns = column.split('.');
+      let elema = a, elemb = b; //a rendezésehez átadjuk az adott objektumokat
+      // a mélységtől függően mindig az adott objektum key értéke lesz behelyettestve
+      // a legvégén a legutolsó elem
+      for (let i = 0; i < columns.length; i += 1) {
+        elema = elema[columns[i]];
+        elemb = elemb[columns[i]];
+      }
+
+      if (typeof elema === 'number' && typeof elemb === 'number') {
         if (direct === 'increasing') {
-          return a[column] - b[column];
+          return elema - elemb;
         }
-        return b[column] - a[column];
+        return elemb - elema;
       } else {
-        const aa: string = ('' + a[column]).toLowerCase();
-        const bb: string = ('' + b[column]).toLowerCase();
+        const aa: string = ('' + elema).toLowerCase();
+        const bb: string = ('' + elemb).toLowerCase();
         if (direct === 'increasing') {
           return aa.localeCompare(bb);
         }

@@ -1,4 +1,26 @@
 <div class="row">
+  <div class="col-12 col-md-10 offset-md-1 my-0">
+    <!-- <input [(ngModel)]="phrase" class="form-control" type="text"> -->
+    <div class="input-group mb-3 d-flex justify-content-center">
+      <p class="col-12 col-md-2 mt-3 text-center">
+        <b>Szűrés</b>
+      </p>
+      <div class="col-12 col-md-4 me-md-1">
+        <select [(ngModel)]="filterKey" class="form-select mt-2">
+          <option value="">szűrés minden mezőben</option>
+          <option *ngFor="let col of columns" [value]="col.key">
+            {{ col.title }}
+          </option>
+        </select>
+      </div>
+      <div class="col-12 col-md-4 ms-md-1">
+        <input [(ngModel)]="phrase" class="form-control ml-3 mt-2" type="text" placeholder="szűrő kifejezés">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-12">
     <table class="table table-striped">
       <thead>
@@ -13,7 +35,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of list | sorter:sortColumn:sortDirect | paginate: { itemsPerPage: 10, currentPage: page }">
+        <tr
+          *ngFor="let row of list | filter:phrase:filterKey | sorter:sortColumn:sortDirect | paginate: { itemsPerPage: 10, currentPage: page }">
           <td *ngFor="let col of columns">
             {{ row[col.key] }}
           </td>
@@ -22,8 +45,19 @@
               <button (click)="raiseSelect(row)" class="btn btn-info">
                 <i class="fa fa-edit"></i>
               </button>
+              <button (click)="raiseDelete(row)" class="btn btn-danger">
+                <i class="fa fa-trash"></i>
+              </button>
             </div>
           </td>
+        </tr>
+
+        <!-- összesítő sor -->
+        <tr class="table__table--sum">
+          <td *ngFor="let col of columns">
+            {{ list | tableColumnSum:col.key:col.mode }}
+          </td>
+          <td></td>
         </tr>
       </tbody>
     </table>

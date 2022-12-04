@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 export interface ITableColumn {
   title: string;
   key: string;
+  mode: string;
 }
 
 /*
@@ -25,16 +26,24 @@ export class ConfigService {
   //searchPhrase$: BehaviorSubject<string> = new BehaviorSubject('');
 
   productTableColumns: ITableColumn[] = [
-    { title: 'ID', key: 'id' },
-    { title: 'Name', key: 'name' },
-    { title: 'Type', key: 'type' },
-    { title: 'Cat.', key: 'category.name' },
-    { title: 'Desc.', key: 'description' },
-    { title: 'Price', key: 'price' },
-    { title: 'Featured', key: 'featured' },
-    { title: 'Active', key: 'active' }
+    { title: 'ID', key: 'id', mode: 'length' },
+    { title: 'Name', key: 'name', mode: '' },
+    { title: 'Type', key: 'type', mode: '' },
+    { title: 'Cat.', key: 'category.name', mode: '' },
+    { title: 'Desc.', key: 'description', mode: '' },
+    { title: 'Price', key: 'price', mode: 'sum' },
+    { title: 'Featured', key: 'featured', mode: '' },
+    { title: 'Active', key: 'active', mode: '' }
   ];
 
+  customerTableColumns: ITableColumn[] = [
+    { title: 'ID', key: 'id', mode: 'length' },
+    { title: 'First Name', key: 'firstName', mode: '' },
+    { title: 'Last name', key: 'lastName', mode: '' },
+    { title: 'Email', key: 'email', mode: '' },
+    { title: 'Address.', key: 'addressText', mode: '' },
+    { title: 'Active', key: 'active', mode: 'sum' }
+  ];
 
   /*
   userEditorFormFields: FormField[] = [

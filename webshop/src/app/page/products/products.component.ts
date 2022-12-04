@@ -42,7 +42,7 @@ export class ProductsComponent implements OnInit {
   currentHeader: string = 'id';
   sortColumn: string = 'id';
   sortDirect: string = 'increasing';
-  sortIcon: string = 'fa fa-long-arrow-down';
+  sortIcon: string = 'fa fa-long-arrow-up';
 
   constructor(
     private productService: ProductService,
