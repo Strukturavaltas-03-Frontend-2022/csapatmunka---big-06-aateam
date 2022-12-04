@@ -1,8 +1,7 @@
-<p>teszt</p>
-
-<div class="row py-4 ">
-  <div class=""
-    *ngFor="let bill of billList$ | async">
-    {{bill.amount}}
+<div class="row">
+  <div *ngIf="billList$ | async as billList" class="">
+    <app-data-table [list]="billList" [columns]="columns" (onSelect)="onBillSelect($event)"
+      (onDelete)="onBillDelete($event)" (onNew)="onBillNew()">
+    </app-data-table>
   </div>
 </div>

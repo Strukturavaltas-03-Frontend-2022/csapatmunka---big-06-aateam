@@ -32,7 +32,7 @@ export class EditCustomerComponent {
         this.customer$ = of(new Customer)
       }
     });
-    this.customerService.getAll();
+    //this.customerService.getAll();
   }
 
   onUpdate(customer: Customer): void {
