@@ -21,6 +21,7 @@ export class DataTableComponent<T extends { [x: string]: any }> implements OnIni
 
   @Output() onSelect: EventEmitter<T> = new EventEmitter();
   @Output() onDelete: EventEmitter<T> = new EventEmitter();
+  @Output() onNew: EventEmitter<T> = new EventEmitter();
 
   page: number = 1;
 
@@ -42,10 +43,20 @@ export class DataTableComponent<T extends { [x: string]: any }> implements OnIni
     this.onSelect.emit(row);
   }
 
-  raiseDelete(row: T): void {
-    this.onDelete.emit(row);
+  raiseDelete(): void {
+    this.onDelete.emit(this.selectDeletedRow);
   }
 
+  //törlésre kijelölt sor
+  selectDeletedRow: T | undefined;
+
+  raiseSelectDelete(row: T): void {
+    this.selectDeletedRow = row;
+  }
+
+  raiseNew(): void {
+    this.onNew.emit();
+  }
 
   onColumnSelect(columnHeader: string): void {
     this.sortColumn = columnHeader;
