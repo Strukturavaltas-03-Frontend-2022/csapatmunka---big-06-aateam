@@ -41,8 +41,32 @@ export class ConfigService {
     { title: 'First Name', key: 'firstName', mode: '' },
     { title: 'Last name', key: 'lastName', mode: '' },
     { title: 'Email', key: 'email', mode: '' },
-    { title: 'Address.', key: 'addressText', mode: '' },
+    { title: 'Address', key: 'addressText', mode: '' },
     { title: 'Active', key: 'active', mode: 'sum' }
+  ];
+
+  orderTableColumns: ITableColumn[] = [
+    { title: 'ID', key: 'id', mode: 'length' },
+    { title: 'First Name', key: 'customerFirstName', mode: '' },
+    { title: 'Last name', key: 'customerLastName', mode: '' },
+    { title: 'Email', key: 'customerEmail', mode: '' },
+    { title: 'Product Name', key: 'customerProductName', mode: '' },
+    { title: 'Product Price', key: 'customerProductPrice', mode: 'sum' },
+    { title: 'Amount', key: 'amount', mode: 'sum' },
+    { title: 'Total Price', key: 'orderPrice', mode: 'sum' },
+    { title: 'Status', key: 'status', mode: '' }
+  ];
+
+  billTableColumns: ITableColumn[] = [
+    { title: 'ID', key: 'id', mode: 'length' },
+    { title: 'First Name', key: 'customerFirstName', mode: '' },
+    { title: 'Last name', key: 'customerLastName', mode: '' },
+    { title: 'Email', key: 'customerEmail', mode: '' },
+    { title: 'Product Name', key: 'customerProductName', mode: '' },
+    //{ title: 'Product Price', key: 'customerProductPrice', mode: 'sum' },
+    { title: 'Order Price', key: 'totalPrice', mode: 'sum' },
+    { title: 'Amount', key: 'amount', mode: 'sum' },
+    { title: 'Status', key: 'status', mode: '' }
   ];
 
   /*

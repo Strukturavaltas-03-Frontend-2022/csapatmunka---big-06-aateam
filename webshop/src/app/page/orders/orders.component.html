@@ -1,8 +1,7 @@
-<p>teszt</p>
-
-<div class="row py-4 ">
-  <div class=""
-    *ngFor="let order of orderList$ | async">
-    {{order.amount}}
+<div class="row">
+  <div *ngIf="orderList$ | async as orderList" class="">
+    <app-data-table [list]="orderList" [columns]="columns" (onSelect)="onOrderSelect($event)"
+      (onDelete)="onOrderDelete($event)" (onNew)="onOrderNew()">
+    </app-data-table>
   </div>
 </div>
