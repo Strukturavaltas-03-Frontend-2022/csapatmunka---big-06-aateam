@@ -45,6 +45,8 @@ export class ConfigService {
     { title: 'Active', key: 'active', mode: 'sum' }
   ];
 
+  orderStatus: string[] = ['new', 'shipped', 'paid',];
+
   orderTableColumns: ITableColumn[] = [
     { title: 'ID', key: 'id', mode: 'length' },
     { title: 'First Name', key: 'customerFirstName', mode: '' },
@@ -56,6 +58,8 @@ export class ConfigService {
     { title: 'Total Price', key: 'orderPrice', mode: 'sum' },
     { title: 'Status', key: 'status', mode: '' }
   ];
+
+  billStatus: string[] = ['new', 'paid',];
 
   billTableColumns: ITableColumn[] = [
     { title: 'ID', key: 'id', mode: 'length' },
