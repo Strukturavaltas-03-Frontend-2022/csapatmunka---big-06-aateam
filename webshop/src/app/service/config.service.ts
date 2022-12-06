@@ -51,7 +51,7 @@ export class ConfigService {
     { title: 'ID', key: 'id', mode: 'length' },
     { title: 'First Name', key: 'customerFirstName', mode: '' },
     { title: 'Last name', key: 'customerLastName', mode: '' },
-    { title: 'Email', key: 'customerEmail', mode: '' },
+    //{ title: 'Email', key: 'customerEmail', mode: '' },
     { title: 'Product Name', key: 'customerProductName', mode: '' },
     { title: 'Product Price', key: 'customerProductPrice', mode: 'sum' },
     { title: 'Amount', key: 'amount', mode: 'sum' },

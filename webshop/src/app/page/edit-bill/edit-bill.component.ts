@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { combineLatest, map, Observable, of } from 'rxjs';
 import { Bill } from 'src/app/model/bill';
 import { Customer } from 'src/app/model/customer';
@@ -58,6 +59,7 @@ export class EditBillComponent {
     private config: ConfigService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -68,7 +70,8 @@ export class EditBillComponent {
         )
       }
       else {
-        this.bill$ = of(new Bill)
+        this.orderService.getAll(); //hogy ne maradjon üresen a combobox
+        this.bill$ = of(new Bill());
       }
     });
 
@@ -92,5 +95,12 @@ export class EditBillComponent {
       this.billService.update(bill);
     }
     this.router.navigate(['/', 'bills']);
+
+    this.toastrService.success('Item saved successfully!', 'OK', {
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      progressBar: true,
+    });
+
   }
 }

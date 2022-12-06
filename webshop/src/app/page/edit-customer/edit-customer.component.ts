@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, of } from 'rxjs';
 import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
@@ -16,7 +17,8 @@ export class EditCustomerComponent {
   constructor(
     private customerService: CustomerService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ export class EditCustomerComponent {
         )
       }
       else {
-        this.customer$ = of(new Customer)
+        this.customer$ = of(new Customer());
       }
     });
     //ha nincs adat
@@ -46,6 +48,12 @@ export class EditCustomerComponent {
       this.customerService.update(customer);
     }
     this.router.navigate(['/', 'customers']);
+
+    this.toastrService.success('Item saved successfully!', 'OK', {
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      progressBar: true,
+    });
 
   }
 }

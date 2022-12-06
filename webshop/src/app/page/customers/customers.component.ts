@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { map, Observable } from 'rxjs';
 import { Customer } from 'src/app/model/customer';
 import { ConfigService } from 'src/app/service/config.service';
@@ -25,7 +26,8 @@ export class CustomersComponent implements OnInit {
   constructor(
     private customerService: CustomerService,
     private config: ConfigService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -45,5 +47,10 @@ export class CustomersComponent implements OnInit {
   onCustomerDelete(customer: Customer): void {
     //console.log(customer);
     this.customerService.delete(customer.id);
+    this.toastrService.success('Item deleted successfully!', 'OK', {
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      progressBar: true,
+    });
   }
 }
