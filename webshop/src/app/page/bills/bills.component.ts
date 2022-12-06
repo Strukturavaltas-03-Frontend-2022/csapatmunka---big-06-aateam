@@ -77,7 +77,7 @@ export class BillsComponent implements OnInit {
 
   onBillDelete(bill: Bill): void {
     //console.log(bill);
-    this.orderService.delete(bill.id);
+    this.billService.delete(bill.id);
   }
 }
 

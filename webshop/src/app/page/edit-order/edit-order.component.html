@@ -6,73 +6,73 @@
 
         <form #productEditorForm="ngForm" (ngSubmit)="onUpdate(order)" class="mx-auto">
 
-
-
-
-            <!-- <div class="row mb-3">
+            <div class="row mb-3">
                 <label for="customer" class="col-sm-4">
-                    <b>Customer</b>
+                    <b>Customer</b> (Sorted by last name)
                 </label>
                 <div class="col-sm-10">
                     <select class="form-select" id="customer" required [(ngModel)]="order.customerID" name="customer">
-                        <option *ngFor="let customer of customerList$ | async" [value]="customer.id"
-                            [selected]="order.customerID == customer.id">
-                            {{customer.firstName }} {{customer.lastName }} - {{customer.address.zip }}
-                            {{customer.address.country }}
-                            {{customer.address.city }} {{customer.address.street }}
-                        </option>
+                        <ng-container *ngIf="customerList$ | async as customerList">
+                            <!-- <option value="" [selected]="true">---Select Customer---</option> -->
+                            <option
+                                *ngFor="let customer of (customerList | sorter:'firstName':'increasing' | sorter:'lastName':'increasing')"
+                                [value]="customer.id" [selected]="order.customerID == customer.id">
+                                {{customer.firstName }} {{customer.lastName }} - (#{{customer.id }}) -
+                                {{customer.address.zip }} {{customer.address.country }}
+                                {{customer.address.city }} {{customer.address.street }}
+                            </option>
+                        </ng-container>
                     </select>
-                </div>
-            </div> -->
-
-            <div class="row mb-3">
-                <label for="customer" class="col-sm-4 col-form-label">
-                    <b>Category ID</b>
-                </label>
-                <div class="col-sm-10">
-                    <input name="customer" [(ngModel)]="order.customerID" type="number" class="form-control" required />
-                    <div *ngIf="productEditorForm.controls['customer']?.invalid" class="error-message">
-                        Category is required!
+                    <div *ngIf="productEditorForm.controls['product']?.invalid" class="error-message">
+                        Select a customer!
                     </div>
                 </div>
             </div>
 
-            <!-- <div class="row mb-3">
-                <label for="product" class="col-sm-4">
-                    <b>Product</b>
-                </label>
-                <div class="col-sm-10">
-                    <select class="form-select" id="product" required [(ngModel)]="order.productID" name="product">
-                        <option *ngFor="let product of productList$ | async" [value]="product.id"
-                            [selected]="order.productID == product.id">
-                            {{product.name }} - {{product.price }}
-                        </option>
-                    </select>
-                </div>
-            </div> -->
-
             <div class="row mb-3">
-                <label for="product" class="col-sm-4 col-form-label">
-                    <b>Product ID</b>
+                <label for="product" class="col-sm-4">
+                    <b>Product</b> (Sorted by name)
                 </label>
                 <div class="col-sm-10">
-                    <input name="product" [(ngModel)]="order.productID" type="number" class="form-control" required />
+                    <select class="form-select" id="product" required="true" [(ngModel)]="order.productID"
+                        name="product">
+                        <ng-container *ngIf="productList$ | async as productList">
+                            <!-- <option value="" [selected]="true">---Select Product---</option> -->
+                            <option *ngFor="let product of productList | sorter:'name':'increasing'"
+                                [value]="product.id" [selected]="order.productID == product.id">
+                                {{ product.name }} - (#{{ product.id }}) - {{ product.price }}
+                            </option>
+                        </ng-container>
+                    </select>
                     <div *ngIf="productEditorForm.controls['product']?.invalid" class="error-message">
-                        Category is required!
+                        Select a product!
                     </div>
                 </div>
             </div>
 
             <div class="row mb-2 ">
-                <label for="addressZip" class="col-sm-2 col-form-label">
+                <label for="amount" class="col-sm-2 col-form-label">
                     <b>Amount</b>
                 </label>
                 <div class="col-sm-10">
-                    <input name="amount" [(ngModel)]="order.amount" type="number" class="form-control" min="0"
-                        required />
+                    <input name="amount" id="amount" [(ngModel)]="order.amount" type="number" class="form-control"
+                        min="1" required />
                     <div *ngIf="productEditorForm.controls['amount']?.invalid" class="error-message">
-                        The zip code is not the correct format!
+                        Minimum amount is more then one!
                     </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="status" class="col-sm-4">
+                    <b>Status</b>
+                </label>
+                <div class="col-sm-10">
+                    <select class="form-select" id="status" required [(ngModel)]="order.status" name="status">
+                        <option *ngFor="let status of orderStatus" [value]="status" [selected]="order.status == status">
+                            {{status }}
+                        </option>
+                    </select>
                 </div>
             </div>
 

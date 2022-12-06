@@ -19,6 +19,7 @@ export class EditOrderComponent {
   order$: Observable<Order | null> = this.orderService.selected$;
   customerList$: Observable<Customer[]> = this.customerService.list$;
   productList$: Observable<Product[]> = this.productService.list$;
+  orderStatus: string[] = this.config.orderStatus;
 
 
   constructor(
@@ -41,11 +42,18 @@ export class EditOrderComponent {
         this.order$ = of(new Order)
       }
     });
-    //this.customerService.getAll();
-    //this.productService.getAll();
+
+    // ha nincs adat
+    if (this.customerService.list$.getValue().length === 0)
+      this.customerService.getAll();
+    if (this.productService.list$.getValue().length === 0)
+      this.productService.getAll();
   }
 
   onUpdate(order: Order): void {
+
+    if (typeof order.productID != 'number') order.productID = parseInt(order.productID);
+    if (typeof order.customerID != 'number') order.customerID = parseInt(order.customerID);
 
     if (order.id === 0) {
       this.orderService.create(order);

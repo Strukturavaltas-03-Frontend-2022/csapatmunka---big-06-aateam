@@ -32,7 +32,9 @@ export class EditCustomerComponent {
         this.customer$ = of(new Customer)
       }
     });
-    //this.customerService.getAll();
+    //ha nincs adat
+    if (this.customerService.list$.getValue().length === 0)
+      this.customerService.getAll();
   }
 
   onUpdate(customer: Customer): void {
