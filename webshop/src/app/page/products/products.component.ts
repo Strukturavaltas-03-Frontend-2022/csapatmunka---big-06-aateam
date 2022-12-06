@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { combineLatest, map, Observable } from 'rxjs';
 import { Category } from 'src/app/model/category';
 import { Product } from 'src/app/model/product';
@@ -48,7 +49,8 @@ export class ProductsComponent implements OnInit {
     private productService: ProductService,
     private categoryService: CategoryService,
     private config: ConfigService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -63,10 +65,20 @@ export class ProductsComponent implements OnInit {
 
   onProductDelete(product: Product): void {
     //console.log(product);
-    // a modal service hívása
+    this.productService.delete(product.id);
+    this.toastrService.success('Az elem törlése sikerült!', 'OK', {
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      progressBar: true,
+    });
   }
 
+  onProductNew(): void {
+    //console.log(customer);
+    this.router.navigate(['/', 'product', 'edit', 0]);
+  }
 
+/*
   onColumnSelect(columnHeader: string): void {
     this.sortColumn = columnHeader;
     if (columnHeader !== this.currentHeader) {
@@ -86,5 +98,5 @@ export class ProductsComponent implements OnInit {
     }
     this.currentHeader = columnHeader;
   }
-
+*/
 }
