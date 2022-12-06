@@ -1,16 +1,32 @@
 <h1 class="text-center my-3">Product editor</h1>
 
-<div class="row mt-2 col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2" *ngIf="product$ | async as product">
+<div
+  class="row mt-2 col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2"
+  *ngIf="product$ | async as product"
+>
   <div class="">
-    <form #productEditorForm="ngForm" (ngSubmit)="onUpdate(product)" class="mx-auto">
+    <form
+      #productEditorForm="ngForm"
+      (ngSubmit)="onUpdate(product)"
+      class="mx-auto"
+    >
       <div class="row mb-3">
         <label for="name" class="col-sm-2 col-form-label">
           <b>Name</b>
         </label>
         <div class="col-sm-10">
-          <input name="name" [(ngModel)]="product.name" type="text" class="form-control"
-            pattern=".{3,50}" required />
-          <div *ngIf="productEditorForm.controls['name']?.invalid" class="error-message">
+          <input
+            name="name"
+            [(ngModel)]="product.name"
+            type="text"
+            class="form-control"
+            pattern=".{3,50}"
+            required
+          />
+          <div
+            *ngIf="productEditorForm.controls['name']?.invalid"
+            class="error-message"
+          >
             Name must be at least 3 characters long!
           </div>
         </div>
@@ -21,15 +37,23 @@
           <b>Type</b>
         </label>
         <div class="col-sm-10">
-          <input name="type" [(ngModel)]="product.type" type="text" class="form-control"
-            required />
-          <div *ngIf="productEditorForm.controls['type']?.invalid" class="error-message">
+          <input
+            name="type"
+            [(ngModel)]="product.type"
+            type="text"
+            class="form-control"
+            required
+          />
+          <div
+            *ngIf="productEditorForm.controls['type']?.invalid"
+            class="error-message"
+          >
             Type is required!
           </div>
         </div>
       </div>
 
-      <div class="row mb-3">
+      <!-- <div class="row mb-3">
         <label for="category" class="col-sm-4 col-form-label">
           <b>Category ID</b>
         </label>
@@ -39,30 +63,80 @@
             Category is required!
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="row mb-3">
+        <label for="category" class="col-sm-4">
+          <b>Category</b>
+        </label>
+        <div class="col-sm-10">
+          <select
+            class="form-select"
+            id="category"
+            required
+            [(ngModel)]="product.catID"
+            name="category"
+          >
+            <ng-container *ngIf="categoryList$ | async as categoryList">
+              <!-- <option value="" [selected]="true">---Select Customer---</option> -->
+              <option
+                *ngFor="
+                  let category of (categoryList | sorter : 'name' : 'increasing')
+                "
+                [value]="category.id"
+                [selected]="product.catID==category.id"
+              >
+                {{ category.name }}
+              </option>
+            </ng-container>
+          </select>
+          <div
+            *ngIf="productEditorForm.controls['category']?.invalid"
+            class="error-message"
+          >
+            Select a category!
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="row mb-3">
         <label for="category" class="col-sm-4">
           <b>Category name</b>
         </label>
         <div class="col-sm-10">
-          <select class="form-select" id="category" required [(ngModel)]="product.catID" name="category">
-            <option *ngFor="let category of categoryList$ | async" [value]="category.id">
-              {{category.name}}
+          <select
+            class="form-select"
+            id="category"
+            required
+            [(ngModel)]="product.catID"
+            name="category"
+          >
+            <option
+              *ngFor="let category of categoryList$ | async"
+              [value]="category.id"
+            >
+              {{ category.name }}
             </option>
           </select>
         </div>
-      </div>
+      </div> -->
 
       <div class="row mb-3">
         <label for="description" class="col-sm-2 col-form-label">
           <b>Description</b>
         </label>
         <div class="col-sm-10">
-          <textarea name="description" class="form-control" required [(ngModel)]="product.description"
-            ></textarea>
+          <textarea
+            name="description"
+            class="form-control"
+            required
+            [(ngModel)]="product.description"
+          ></textarea>
 
-          <div *ngIf="productEditorForm.controls['description']?.invalid" class="error-message">
+          <div
+            *ngIf="productEditorForm.controls['description']?.invalid"
+            class="error-message"
+          >
             Description is required!
           </div>
         </div>
@@ -73,8 +147,17 @@
           <b>Price</b>
         </label>
         <div class="col-3 col-md-2">
-          <input name="price" [(ngModel)]="product.price" type="number" class="form-control" required />
-          <div *ngIf="productEditorForm.controls['price']?.invalid" class="error-message">
+          <input
+            name="price"
+            [(ngModel)]="product.price"
+            type="number"
+            class="form-control"
+            required
+          />
+          <div
+            *ngIf="productEditorForm.controls['price']?.invalid"
+            class="error-message"
+          >
             Price required!
           </div>
         </div>
@@ -85,7 +168,13 @@
           <b>Featured</b>
         </label>
         <div class="col-sm-6">
-          <input name="featured" id="featured" [(ngModel)]="product.featured" type="checkbox" class="form-check-input" />
+          <input
+            name="featured"
+            id="featured"
+            [(ngModel)]="product.featured"
+            type="checkbox"
+            class="form-check-input"
+          />
         </div>
       </div>
 
@@ -94,12 +183,21 @@
           <b>Active</b>
         </label>
         <div class="col-sm-6">
-          <input name="active" [(ngModel)]="product.active" type="checkbox" class="form-check-input" />
+          <input
+            name="active"
+            [(ngModel)]="product.active"
+            type="checkbox"
+            class="form-check-input"
+          />
         </div>
       </div>
 
       <div class="mt-3 d-flex justify-content-center">
-        <button [disabled]="productEditorForm.invalid" class="btn btn-primary" type="submit">
+        <button
+          [disabled]="productEditorForm.invalid"
+          class="btn btn-primary"
+          type="submit"
+        >
           <i class="fa fa-save"></i> Save
         </button>
       </div>
