@@ -1,0 +1,31 @@
+.card-header {
+  //position: absolute;
+}
+.card {
+  max-width: 20vw;
+}
+
+i {
+  font-size: 3em;
+  position: relative;
+  left: -80px;
+  top: -50px;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.fa-shopping-basket {
+  background-color: rgb(1, 132, 255);
+}
+
+.fa-truck {
+  background-color: rgb(19, 192, 3);
+}
+
+.fa-calendar-o {
+  background-color: red;
+}
+
+.fa-money {
+  background-color: orange;
+}
