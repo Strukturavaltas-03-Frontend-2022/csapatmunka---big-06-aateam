@@ -1,1 +1,62 @@
-<p>home works!</p>
+<div class="container">
+
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-5">
+
+      <div class="card text-center">
+        <div class="card-header">
+          <i class="fa fa-shopping-basket"></i>
+          <h3>Products</h3>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title text">{{activeProducts | async}}</h2>
+        </div>
+        <div class="card-footer text-muted">
+          Number of active products
+        </div>
+      </div>
+
+      <div class="card text-center">
+        <div class="card-header">
+          <i class="fa fa-truck"></i>
+          <h3>Customers</h3>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title text">{{activeCustomers | async}}</h2>
+        </div>
+        <div class="card-footer text-muted">
+          Number of active customers
+        </div>
+      </div>
+
+      <div class="card text-center">
+        <div class="card-header">
+          <i class="fa fa-calendar-o"></i>
+          <h3>Orders</h3>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title text">{{notPaidOrders | async}}</h2>
+        </div>
+        <div class="card-footer text-muted">
+          Number of not paid orders
+        </div>
+      </div>
+
+      <div class="card text-center">
+        <div class="card-header">
+          <i class="fa fa-money"></i>
+          <h3>Bills</h3>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title text">${{notPaidBillsAmount | async| number:'1.0-0':'en-US'}}</h2>
+        </div>
+        <div class="card-footer text-muted">
+          Amount of not paid bills
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
