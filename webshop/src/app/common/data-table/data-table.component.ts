@@ -34,9 +34,33 @@ export class DataTableComponent<T extends { [x: string]: any }> implements OnIni
   sortDirect: string = 'increasing';
   sortIcon: string = 'fa fa-long-arrow-up';
 
+  lastDragKey = '';
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onHeaderDragStart(ev: DragEvent): void {
+    this.lastDragKey = (ev.target as HTMLTableCellElement).id;
+  }
+
+  onHeaderDrop(ev: DragEvent): void {
+    ev.preventDefault();
+    const targetID: string = (ev.target as HTMLTableCellElement).id;
+    const fromIndex = this.columns.findIndex( col =>
+      col.key === this.lastDragKey
+     );
+    const toIndex = this.columns.findIndex( col =>
+      col.key === targetID
+     );
+    this.swapCols(fromIndex, toIndex);
+  }
+
+  swapCols(from: number = 2, to: number = 0): void {
+    const temp = {...this.columns[from]};
+    this.columns.splice(from , 1);
+    this.columns.splice(to, 0, temp);
   }
 
   raiseSelect(row: T): void {

@@ -1,5 +1,18 @@
-.column__header:hover {
+table th {
+  position: relative;
+  user-select: none;
   cursor: pointer;
+  .drag__icon {
+      opacity: 0;
+      position: absolute;
+      right: 1em;
+  }
+  &:hover {
+      //background-color: aqua;
+      .drag__icon {
+          opacity: .5;
+      }
+  }
 }
 
 .sort__direction__icon {
