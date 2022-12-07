@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, of } from 'rxjs';
 import { Customer } from 'src/app/model/customer';
 import { Order } from 'src/app/model/order';
@@ -29,7 +30,9 @@ export class EditOrderComponent {
     private config: ConfigService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private toastrService: ToastrService
   ) { }
+  newOrder: Order = new Order();
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -39,7 +42,9 @@ export class EditOrderComponent {
         )
       }
       else {
-        this.order$ = of(new Order)
+        this.customerService.getAll();  //hogy ne maradjon üresen a combobox
+        this.productService.getAll();
+        this.order$ = of(new Order());
       }
     });
 
@@ -62,6 +67,12 @@ export class EditOrderComponent {
       this.orderService.update(order);
     }
     this.router.navigate(['/', 'orders']);
+
+    this.toastrService.success('Item saved successfully!', 'OK', {
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      progressBar: true,
+    });
 
   }
 }

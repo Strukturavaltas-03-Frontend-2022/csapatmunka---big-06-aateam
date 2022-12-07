@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { combineLatest, map, Observable } from 'rxjs';
 import { Bill } from 'src/app/model/bill';
 import { BillService } from 'src/app/service/bill.service';
@@ -54,7 +55,8 @@ export class BillsComponent implements OnInit {
     private customerService: CustomerService,
     private productService: ProductService,
     private config: ConfigService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -78,6 +80,11 @@ export class BillsComponent implements OnInit {
   onBillDelete(bill: Bill): void {
     //console.log(bill);
     this.billService.delete(bill.id);
+    this.toastrService.success('Item deleted successfully!', 'OK', {
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      progressBar: true,
+    });
   }
 }
 
