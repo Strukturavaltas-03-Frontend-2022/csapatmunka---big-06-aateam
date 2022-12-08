@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { combineLatest, map, Observable } from 'rxjs';
 import { Category } from 'src/app/model/category';
 import { CategoryService } from 'src/app/service/category.service';
@@ -15,23 +16,13 @@ export class CategoriesComponent implements OnInit {
 
   categoryList$: Observable<Category[]> = this.categoryService.list$;
 
-  columns = this.config.productTableColumns;
-
-  page: number = 1;
-
-  phrase: string = '';
-
-  filterKey: string = '';
-
-  currentHeader: string = 'id';
-  sortColumn: string = 'id';
-  sortDirect: string = 'increasing';
-  sortIcon: string = 'fa fa-long-arrow-up';
+  columns = this.config.categoryTableColumns;
 
   constructor(
     private categoryService: CategoryService,
     private config: ConfigService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -39,33 +30,22 @@ export class CategoriesComponent implements OnInit {
   }
 
   onCategorySelect(category: Category): void {
+    //console.log(customer);
     this.router.navigate(['/', 'category', 'edit', category.id]);
   }
 
-  onCategoryRemove(category: Category): void {
-    //console.log(product);
-    // a modal service hívása
+  onCategoryNew(): void {
+    //console.log(category);
+    this.router.navigate(['/', 'category', 'edit', 0]);
   }
 
-  onColumnSelect(columnHeader: string): void {
-    this.sortColumn = columnHeader;
-    if (columnHeader !== this.currentHeader) {
-      this.sortDirect = 'increasing';
-      this.sortIcon = 'fa fa-long-arrow-up';
-    }
-
-    if (columnHeader == this.currentHeader) {
-      if (this.sortDirect == 'increasing') {
-        this.sortDirect = 'decreasing';
-        this.sortIcon = 'fa fa-long-arrow-down';
-      }
-      else {
-        this.sortDirect = 'increasing';
-        this.sortIcon = 'fa fa-long-arrow-up';
-      }
-    }
-    this.currentHeader = columnHeader;
+  onCategoryDelete(category: Category): void {
+    //console.log(customer);
+    this.categoryService.delete(category.id);
+    this.toastrService.success('Item deleted successfully!', 'OK', {
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      progressBar: true,
+    });
   }
-
-
 }
