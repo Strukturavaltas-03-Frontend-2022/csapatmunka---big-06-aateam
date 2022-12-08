@@ -73,6 +73,13 @@ export class ConfigService {
     { title: 'Status', key: 'status', mode: '' }
   ];
 
+  categoryTableColumns: ITableColumn[] = [
+    { title: 'ID', key: 'id', mode: 'length' },
+    { title: 'Name', key: 'categoryName', mode: '' },
+    { title: 'Description', key: 'categoryDescription', mode: '' },
+  ];
+
+
   /*
   userEditorFormFields: FormField[] = [
     {
