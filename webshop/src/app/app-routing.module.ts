@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BillsComponent } from './page/bills/bills.component';
+import { CategoriesComponent } from './page/categories/categories.component';
 import { CustomersComponent } from './page/customers/customers.component';
 import { EditBillComponent } from './page/edit-bill/edit-bill.component';
+import { EditCategoriesComponent } from './page/edit-categories/edit-categories.component';
 import { EditCustomerComponent } from './page/edit-customer/edit-customer.component';
 import { EditOrderComponent } from './page/edit-order/edit-order.component';
 import { EditProductComponent } from './page/edit-product/edit-product.component';
@@ -49,6 +51,14 @@ const routes: Routes = [
   {
     path: 'bill/edit/:id',
     component: EditBillComponent,
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent,
+  },
+  {
+    path: 'bill/edit/:id',
+    component: EditCategoriesComponent,
   },
   {
     path: 'profile',

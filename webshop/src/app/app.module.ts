@@ -26,6 +26,8 @@ import { TableColumnSumPipe } from './pipe/table-column-sum.pipe';
 import { EditCustomerComponent } from './page/edit-customer/edit-customer.component';
 import { EditBillComponent } from './page/edit-bill/edit-bill.component';
 import { EditOrderComponent } from './page/edit-order/edit-order.component';
+import { EditCategoriesComponent } from './page/edit-categories/edit-categories.component';
+import { CategoriesComponent } from './page/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { EditOrderComponent } from './page/edit-order/edit-order.component';
     TableColumnSumPipe,
     EditCustomerComponent,
     EditBillComponent,
-    EditOrderComponent
+    EditOrderComponent,
+    CategoriesComponent,
+    EditCategoriesComponent,
   ],
   imports: [
     BrowserModule,
