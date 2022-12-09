@@ -146,7 +146,7 @@ export class HomeComponent implements OnInit {
     this.productService.getAll();
     this.categoryService.getAll();
 
-    const chartSettings = {
+    this.OrdersChartOptions = {
       series: [
         {
           name: "order",
@@ -226,6 +226,86 @@ export class HomeComponent implements OnInit {
       }
     };
 
+    this.BillsChartOptions = {
+      series: [
+        {
+          name: "order",
+          data: [1,1]
+        }
+      ],
+      chart: {
+        height: 170,
+        type: "bar"
+      },
+      plotOptions: {
+        bar: {
+          dataLabels: {
+            position: "top" // top, center, bottom
+          }
+        }
+      },
+      dataLabels: {
+        enabled: true,
+        formatter: function(val: any) {
+          return val + "db";
+        },
+        offsetY: -30,
+        style: {
+          fontSize: "12px",
+          colors: ["#304758"]
+        }
+      },
+
+      xaxis: {
+        categories: [
+          '1',
+          '1',
+
+        ],
+
+        tooltip: {
+          enabled: true,
+          offsetY: -50
+        }
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "light",
+          type: "horizontal",
+          shadeIntensity: 0.25,
+          gradientToColors: undefined,
+          inverseColors: true,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [50, 0, 100, 100]
+        }
+      },
+      yaxis: {
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        },
+        labels: {
+          show: false,
+          formatter: function(val: any) {
+            return val + 'db';
+          }
+        }
+      },
+      title: {
+        text: "",
+        floating: true,
+        offsetY: 150,
+        align: "center",
+        style: {
+          color: "#444"
+        }
+      }
+    };
+
     this.dataSource$.subscribe(
       data => {
         // Order chart.
@@ -236,14 +316,36 @@ export class HomeComponent implements OnInit {
         const paidOrders: number =
           data.orders.filter(o => o.status === 'paid').length;
 
-        chartSettings.series[0].data[0] = newOrders;
-        chartSettings.series[0].data[1] = shippedOrders;
-        chartSettings.series[0].data[2] = paidOrders;
-        chartSettings.xaxis.categories = ['new', 'shipped', 'paid']
+          this.OrdersChartOptions.series[0].data[0] = newOrders;
+          this.OrdersChartOptions.series[0].data[1] = shippedOrders;
+          this.OrdersChartOptions.series[0].data[2] = paidOrders;
+          this.OrdersChartOptions.xaxis.categories = ['new', 'shipped', 'paid']
 
-        this.OrdersChartOptions = chartSettings;
+        //this.OrdersChartOptions = chartSettings;
       }
     );
+
+    this.dataSource$.subscribe(
+      data => {
+        // Bill chart.
+        const newBills: number =
+          data.bills.filter(o => o.status === 'new').length;
+        const paidBills: number =
+          data.bills.filter(o => o.status === 'paid').length
+        const paidBillsSum: number =
+          data.bills.filter(o => o.status === 'paid').
+            reduce((acc, one) => acc + parseInt('' + one.amount), 0)
+
+            this.BillsChartOptions.series[0].data[0] = newBills;
+            this.BillsChartOptions.series[0].data[1] = paidBills;
+            //this.BillsChartOptions.series[0].data[2] = paidBillsSum;
+            this.BillsChartOptions.xaxis.categories = ['new', 'paid']
+
+            //this.BillsChartOptions = chartSettings;
+      }
+    );
+
+
     //this.chartOptions = chartSettings;
   }
 }

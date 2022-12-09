@@ -129,24 +129,28 @@
             class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1"
           >
             <div class="chart">
-              <canvas
-                id="chart-line"
-                class="chart-canvas"
-                height="170"
-              ></canvas>
+              <apx-chart
+                *ngIf="BillsChartOptions"
+                [series]="BillsChartOptions.series"
+                [chart]="BillsChartOptions.chart"
+                [dataLabels]="BillsChartOptions.dataLabels"
+                [plotOptions]="BillsChartOptions.plotOptions"
+                [yaxis]="BillsChartOptions.yaxis"
+                [xaxis]="BillsChartOptions.xaxis"
+                [fill]="BillsChartOptions.fill"
+                [title]="BillsChartOptions.title"
+              ></apx-chart>
             </div>
           </div>
         </div>
         <div class="card-body">
-          <h6 class="mb-0">Daily Sales</h6>
+          <h6 class="mb-0">Bills</h6>
           <p class="text-sm">
-            (<span class="font-weight-bolder">+15%</span>) increase in today
-            sales.
+            quick summary
           </p>
           <hr class="dark horizontal" />
           <div class="d-flex">
-            <i class="material-icons text-sm my-auto me-1">schedule</i>
-            <p class="mb-0 text-sm">updated 4 min ago</p>
+            <p class="mb-0 text-sm">updated today</p>
           </div>
         </div>
       </div>
