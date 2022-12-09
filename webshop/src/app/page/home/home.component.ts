@@ -32,7 +32,9 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('chart') chart!: ElementRef;
 
-  public chartOptions: any;
+  public OrdersChartOptions: any;
+  public CustomersChartOptions: any;
+  public BillsChartOptions: any;
 
   billList$: BehaviorSubject<Bill[]> = this.billService.list$;
   customerList$: BehaviorSubject<Customer[]> = this.customerService.list$;
@@ -180,28 +182,7 @@ export class HomeComponent implements OnInit {
           '1',
           '1'
         ],
-        position: "top",
-        labels: {
-          offsetY: -18
-        },
-        axisBorder: {
-          show: false
-        },
-        axisTicks: {
-          show: false
-        },
-        crosshairs: {
-          fill: {
-            type: "gradient",
-            gradient: {
-              colorFrom: "#D8E3F0",
-              colorTo: "#BED1E6",
-              stops: [0, 100],
-              opacityFrom: 0.4,
-              opacityTo: 0.5
-            }
-          }
-        },
+
         tooltip: {
           enabled: true,
           offsetY: -50
@@ -249,19 +230,18 @@ export class HomeComponent implements OnInit {
       data => {
         // Order chart.
         const newOrders: number =
-          //data.orders.filter(o => o.status.includes('new')).length;
-          data.orders.length;
+          data.orders.filter(o => o.status.includes('new')).length;
         const shippedOrders: number =
           data.orders.filter(o => o.status === 'shipped').length;
         const paidOrders: number =
           data.orders.filter(o => o.status === 'paid').length;
 
         chartSettings.series[0].data[0] = newOrders;
-        chartSettings.series[0].data[1] = 15;
+        chartSettings.series[0].data[1] = shippedOrders;
         chartSettings.series[0].data[2] = paidOrders;
         chartSettings.xaxis.categories = ['new', 'shipped', 'paid']
 
-        this.chartOptions = chartSettings;
+        this.OrdersChartOptions = chartSettings;
       }
     );
     //this.chartOptions = chartSettings;

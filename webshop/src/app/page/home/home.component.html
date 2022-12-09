@@ -94,15 +94,15 @@
           >
             <div class="chart">
               <apx-chart
-                *ngIf="chartOptions"
-                [series]="chartOptions.series"
-                [chart]="chartOptions.chart"
-                [dataLabels]="chartOptions.dataLabels"
-                [plotOptions]="chartOptions.plotOptions"
-                [yaxis]="chartOptions.yaxis"
-                [xaxis]="chartOptions.xaxis"
-                [fill]="chartOptions.fill"
-                [title]="chartOptions.title"
+                *ngIf="OrdersChartOptions"
+                [series]="OrdersChartOptions.series"
+                [chart]="OrdersChartOptions.chart"
+                [dataLabels]="OrdersChartOptions.dataLabels"
+                [plotOptions]="OrdersChartOptions.plotOptions"
+                [yaxis]="OrdersChartOptions.yaxis"
+                [xaxis]="OrdersChartOptions.xaxis"
+                [fill]="OrdersChartOptions.fill"
+                [title]="OrdersChartOptions.title"
               ></apx-chart>
               <!-- <canvas id="chart-bars" class="chart-canvas" height="170">
               </canvas> -->
@@ -110,7 +110,7 @@
           </div>
         </div>
         <div class="card-body">
-          <h6 class="mb-0">Average price of products</h6>
+          <h6 class="mb-0">Orders</h6>
           <p class="text-sm">by categories</p>
           <hr class="dark horizontal" />
           <div class="d-flex">
