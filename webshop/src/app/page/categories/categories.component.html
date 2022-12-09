@@ -1,11 +1,7 @@
 <div class="row">
   <div *ngIf="categoryList$ | async as categoryList" class="">
-    <app-data-table
-    [list] = "categoryList"
-    [columns] = "columns"
-    (onSelect)="onCategorySelect($event)"
-    (onRemove="onCategoryRemove($event)">
+    <app-data-table [list]="categoryList" [columns]="columns" (onSelect)="onCategorySelect($event)"
+      (onDelete)="onCategoryDelete($event)" (onNew)="onCategoryNew()">
     </app-data-table>
   </div>
 </div>
-

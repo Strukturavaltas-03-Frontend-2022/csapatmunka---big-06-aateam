@@ -75,8 +75,8 @@ export class ConfigService {
 
   categoryTableColumns: ITableColumn[] = [
     { title: 'ID', key: 'id', mode: 'length' },
-    { title: 'Name', key: 'categoryName', mode: '' },
-    { title: 'Description', key: 'categoryDescription', mode: '' },
+    { title: 'Name', key: 'name', mode: '' },
+    { title: 'Description', key: 'description', mode: '' },
   ];
 
 

@@ -57,6 +57,10 @@ const routes: Routes = [
     component: CategoriesComponent,
   },
   {
+    path: 'category/edit/:id',
+    component: EditCategoriesComponent,
+  },
+  {
     path: 'bill/edit/:id',
     component: EditCategoriesComponent,
   },
